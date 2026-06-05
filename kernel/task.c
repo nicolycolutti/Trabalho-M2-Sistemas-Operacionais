@@ -65,7 +65,16 @@ void xTaskDestroy(int index)
 
     /* Move as tasks seguintes uma posição para trás */
     for (int i = index; i < task_count - 1; i++)
-        tasks[i] = tasks[i + 1];
+    {
+        tasks[i].entry      = tasks[i + 1].entry;
+        tasks[i].priority   = tasks[i + 1].priority;
+        tasks[i].state      = tasks[i + 1].state;
+        tasks[i].stack      = tasks[i + 1].stack;
+        tasks[i].stack_size = tasks[i + 1].stack_size;
+        tasks[i].sepc       = tasks[i + 1].sepc;
+        for (int r = 0; r < 31; r++)
+            tasks[i].regs[r] = tasks[i + 1].regs[r];
+    }
 
     task_count--;
 }

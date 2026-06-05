@@ -9,26 +9,6 @@
  * Como não existe printf no kernel,
  * a conversão para texto é feita manualmente.
  */
-static void uart_print_uint(uint64_t v)
-{
-    if (v == 0) { uart_putc('0'); return; }
-
-    char buf[20];
-    int  i = 0;
-
-    while (v > 0)
-    {
-        buf[i++] = '0' + (v % 10);
-        v /= 10;
-    }
-
-    for (int j = i - 1; j >= 0; j--)
-        uart_putc(buf[j]);
-}
-
-/*
- * Mostra informações sobre o uso atual do heap.
- */
 static void print_heap_status(void)
 {
     uart_print("Heap total : "); uart_print_uint(memory_total()); uart_print(" bytes\n");
@@ -36,7 +16,6 @@ static void print_heap_status(void)
     uart_print("Heap livre : "); uart_print_uint(memory_free());  uart_print(" bytes\n");
     uart_print("\n");
 }
-
 /*
  * Task de exemplo.
  */
