@@ -1,0 +1,21 @@
+cat << 'EOF' > .gitignore
+# Arquivos de compilação (Binários e Objetos)
+*.o
+*.elf
+*.bin
+*.img
+*.iso
+
+# Arquivos de depuração e mapeamento
+*.map
+*.sym
+
+# Pastas de build / temporárias
+build/
+obj/
+
+# Configurações do VS Code e Logs
+.vscode/
+.history/
+*.log
+EOF
