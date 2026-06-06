@@ -133,8 +133,7 @@ void kernel_main(void) {
     kfree(p4);
 
     /* Reinicia o heap para demonstração limpa das tasks */
-    memory_init();
-    uart_print("  Heap reiniciado\n");
+    uart_print("  Heap apos liberar p4:\n");
     print_heap_status();
 
     xTaskCreate(task1, 2048, 1);
