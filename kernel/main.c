@@ -151,18 +151,9 @@ void kernel_main(void) {
     kfree(stack_teste);
     uart_print("  Stack temporaria liberada e memoria devolvida ao heap\n");
     print_heap_status();
-
-    uart_print("=== Testes concluidos com sucesso ===\n");
-    uart_print("Todos os cenarios de gerencia de memoria demonstrados.\n");
-
-    /* Scheduler disponivel para teste manual.
-    * Descomentar as linhas abaixo para iniciar o escalonamento.
-    * Nota: identificado comportamento inesperado no context switch
-    * ao combinar os testes de memoria com o scheduler na mesma execucao.
-    */
    
-    // uart_print("=== Iniciando scheduler ===\n\n");
-    // scheduler_start();
+    uart_print("=== Iniciando scheduler ===\n\n");
+    scheduler_start();
 
     while (1);
 }
