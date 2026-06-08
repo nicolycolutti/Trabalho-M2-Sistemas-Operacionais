@@ -142,16 +142,14 @@ void kernel_main(void) {
     uart_print("  Task 2 criada (stack = 2048 bytes via kmalloc)\n");
     print_heap_status();
 
-    /* Demonstra kfree da stack sem destruir o contexto do scheduler */
-    uart_print("  Liberando stack temporaria para demonstrar kfree:\n");
-    void *stack_teste = kmalloc(2048);
-    uart_print("  Stack temporaria alocada\n");
+    xTaskDestroy(0);
+    uart_print("  Task 1 removida (stack devolvida ao heap via kfree)\n");
     print_heap_status();
 
-    kfree(stack_teste);
-    uart_print("  Stack temporaria liberada e memoria devolvida ao heap\n");
+    xTaskCreate(task1, 2048, 1);
+    uart_print("  Task 1 recriada: stack reutiliza o bloco liberado!\n");
     print_heap_status();
-   
+
     uart_print("=== Iniciando scheduler ===\n\n");
     scheduler_start();
 
